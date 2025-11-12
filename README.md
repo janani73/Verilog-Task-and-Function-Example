@@ -28,11 +28,31 @@ A Ripple Counter is a sequential circuit that counts in binary. In a 4-bit rippl
 
 ### **4-bit Ripple Carry Adder using Task**
 
-```verilog
-// 4-bit Ripple Carry Adder using Task
-  timescale 1ns/1ps module ripple(a,b,cin,sum,cout); input [3:0] a,b; input cin; output reg [3:0] sum; output reg cout; reg [4:0] temp; task ripple_add; input [3:0] x,y; input c_in; output [3:0] s; output c_out; reg [4:0] t; begin t = x + y + c_in; s = t[3:0]; c_out = t[4]; end endtask always @(*) begin ripple_add(a,b,cin,sum,cout); end endmodule
 ```
-
+ `timescale 1ns/1ps
+ module ripple(a,b,cin,sum,cout);
+ input [3:0] a,b;
+input cin;
+ output reg [3:0] sum;
+ output reg cout;
+ reg [4:0] temp;
+task ripple_add;
+ input [3:0] x,y;
+input c_in;
+output [3:0] s;
+ output c_out;
+reg [4:0] t;
+ begin t = x + y + c_in;
+ s = t[3:0];
+c_out = t[4];
+ end
+ endtask
+ always @(*)
+ begin
+ ripple_add(a,b,cin,sum,cout);
+end
+endmodule
+```
 ### **Test bench 4-bit Ripple Carry Adder using Task**
 ```
 module tb_ripple_carry_adder_task;
